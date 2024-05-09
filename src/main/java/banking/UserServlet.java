@@ -64,6 +64,7 @@ public class UserServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String action = request.getParameter("action");
+		System.out.println("POST");
 		System.out.println(action);
         if ("register".equals(action)) {
             try {
@@ -143,7 +144,11 @@ public class UserServlet extends HttpServlet {
 	    System.out.println(users);
 	    System.out.println("Users have been read");
 	    for (int i = 0; i < users.length(); i++) {
+	    	System.out.println("HI inside the loop");
 	        JSONObject userJson = users.getJSONObject(i);
+	        System.out.println("HI inside the loop");
+	        System.out.println(userJson);
+
 	        if (userJson.getString("username").equals(username) && userJson.getString("password").equals(password)) {
 	            // Create a User object from JSONObject
 
@@ -160,7 +165,7 @@ public class UserServlet extends HttpServlet {
 	        	        loanDetails = convertJsonToLoan(loanDetailsJson); // Convert only if not null
 	        	    }
 	        	}
-	        	String typeOfAccount = userJson.getString("type");
+	        	String typeOfAccount = userJson.getString("typeOfAccount");
 	        	JSONArray transactionsJsonArray = userJson.getJSONArray("transactions");
 	        	// Convert transactionsJsonArray to Transaction[] array
 	        	Transaction[] transactions = convertJsonToTransactions(transactionsJsonArray); // You need to implement this method
